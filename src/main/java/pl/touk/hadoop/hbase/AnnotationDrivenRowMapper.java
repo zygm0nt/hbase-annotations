@@ -1,27 +1,29 @@
 package pl.touk.hadoop.hbase;
 
-import org.apache.hadoop.hbase.client.Result;
-import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
-import pl.touk.hadoop.hbase.annotation.Column;
-import pl.touk.hadoop.hbase.annotation.Id;
-import pl.touk.hadoop.hbase.annotation.Timestamp;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.util.Bytes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+
+import pl.touk.hadoop.hbase.annotation.Column;
+import pl.touk.hadoop.hbase.annotation.Id;
+import pl.touk.hadoop.hbase.annotation.Timestamp;
+
 public class AnnotationDrivenRowMapper<T> {
 
     private Class<T> targetClass;
 
-    private Logger log = Logger.getLogger(AnnotationDrivenRowMapper.class);
+    private Logger log = LoggerFactory.getLogger(AnnotationDrivenRowMapper.class);
 
     private ExpressionParser parser = new SpelExpressionParser();
     
